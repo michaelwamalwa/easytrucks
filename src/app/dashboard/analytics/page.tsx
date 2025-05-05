@@ -4,31 +4,37 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+type AnalyticsData = {
+  deliveriesCompleted: number;
+  averageDeliveryTime: string;
+  fleetUtilization: string;
+};
+
 export default function AnalyticsPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [analyticsData, setAnalyticsData] = useState<any>(null);
+  const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null);
 
-  // If session is loading or not available, redirect to login
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+
+    if (status === "authenticated") {
+      // Simulate fetching data
+      setTimeout(() => {
+        setAnalyticsData({
+          deliveriesCompleted: 150,
+          averageDeliveryTime: "2 hours",
+          fleetUtilization: "85%",
+        });
+      }, 1000);
+    }
+  }, [status, router]);
+
   if (status === "loading") {
     return <p>Loading...</p>;
   }
-
-  if (!session) {
-    router.push("/login");
-    return null;
-  }
-
-  // Fetch analytics data (simulating dynamic content)
-  useEffect(() => {
-    setTimeout(() => {
-      setAnalyticsData({
-        deliveriesCompleted: 150,
-        averageDeliveryTime: "2 hours",
-        fleetUtilization: "85%",
-      });
-    }, 1000);
-  }, []);
 
   return (
     <main className="p-8 max-w-5xl mx-auto">
