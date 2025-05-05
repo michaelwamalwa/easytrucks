@@ -1,5 +1,3 @@
-"use client";
-
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -39,6 +37,10 @@ export default function DeliveriesPage() {
   return (
     <main className="p-8 max-w-5xl mx-auto">
       <h1 className="text-3xl font-bold mb-4">Active Deliveries</h1>
+
+      {session && (
+        <p>Welcome, {session.user?.name || "User"}!</p> // Use session here if needed
+      )}
 
       {deliveries.length > 0 ? (
         <div className="space-y-4">

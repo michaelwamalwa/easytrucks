@@ -1,5 +1,3 @@
-"use client";
-
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -17,25 +15,28 @@ export default function RoutesPage() {
   const router = useRouter();
   const [routes, setRoutes] = useState<Route[]>([]);
 
-  // If session is loading or not available, redirect to login
+  // Fetch routes data once session is authenticated
+  useEffect(() => {
+    if (status === "authenticated") {
+      setTimeout(() => {
+        setRoutes([
+          { id: 1, routeName: "Route #1", truckAssigned: "Truck #1", scheduledTime: "10:00 AM" },
+          { id: 2, routeName: "Route #2", truckAssigned: "Truck #2", scheduledTime: "12:00 PM" },
+        ]);
+      }, 1000);
+    }
+  }, [status]); // Dependency on status to run after it's authenticated
+
+  // Show loading message until session is available
   if (status === "loading") {
     return <p>Loading...</p>;
   }
 
+  // Redirect to login page if session is not available
   if (!session) {
     router.push("/login");
     return null;
   }
-
-  // Fetch routes data (simulating dynamic content)
-  useEffect(() => {
-    setTimeout(() => {
-      setRoutes([
-        { id: 1, routeName: "Route #1", truckAssigned: "Truck #1", scheduledTime: "10:00 AM" },
-        { id: 2, routeName: "Route #2", truckAssigned: "Truck #2", scheduledTime: "12:00 PM" },
-      ]);
-    }, 1000);
-  }, []);
 
   return (
     <main className="p-8 max-w-5xl mx-auto">

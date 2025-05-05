@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Truck, Clock, MapPin } from 'lucide-react';
@@ -59,23 +57,16 @@ export default function Home() {
         }}
       >
         {/* Feature Card */}
-        {[
-          {
-            title: 'Real-Time Tracking',
-            desc: 'Monitor your shipments live with our interactive map.',
-            icon: <MapPin size={48} className="text-blue-600" />
-          },
-          {
-            title: 'On-Time Delivery',
-            desc: 'Guaranteed punctual arrivals for all your cargo.',
-            icon: <Clock size={48} className="text-blue-600" />
-          },
-          {
-            title: 'Robust Fleet',
-            desc: 'A diverse selection of vehicles to suit any load size.',
-            icon: <Truck size={48} className="text-blue-600" />
-          }
-        ].map((feature, idx) => (
+        {[{
+          title: 'Real-Time Tracking',
+          desc: 'Monitor your shipments live with our interactive map.',
+          icon: <MapPin size={48} className="text-blue-600" />
+        },
+        {
+          title: 'On-Time Delivery',
+          desc: 'Guaranteed punctual arrivals for all your cargo.',
+          icon: <Clock size={48} className="text-blue-600" />
+        }].map((feature, idx) => (
           <motion.div
             key={idx}
             className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg"
