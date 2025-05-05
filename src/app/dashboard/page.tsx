@@ -24,7 +24,6 @@ export default function DashboardPage() {
 
   // States for dynamic data
   const [activeDeliveries, setActiveDeliveries] = useState<Delivery[]>([]);
-  const [fleet, setFleet] = useState<Truck[]>([]);
   const [selectedTab, setSelectedTab] = useState("deliveries"); // Default tab: Deliveries
 
   // Fetch mock data after mount
@@ -34,10 +33,7 @@ export default function DashboardPage() {
         { id: 1, name: "Delivery #123", status: "In Progress" },
         { id: 2, name: "Delivery #124", status: "Completed" },
       ]);
-      setFleet([
-        { id: 1, name: "Truck #1", type: "Cargo" },
-        { id: 2, name: "Truck #2", type: "Refrigerated" },
-      ]);
+  
     }, 1000);
   }, []);
 
