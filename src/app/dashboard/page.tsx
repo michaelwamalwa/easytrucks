@@ -4,17 +4,28 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
+
+// Define types for deliveries and fleet
+type Delivery = {
+  id: number;
+  name: string;
+  status: string;
+};
+
+type Truck = {
+  id: number;
+  name: string;
+  type: string;
+};
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
   // States for dynamic data
-  const [activeDeliveries, setActiveDeliveries] = useState<any[]>([]);
-  const [fleet, setFleet] = useState<any[]>([]);
-
-  const [selectedTab, setSelectedTab] = useState('deliveries'); // Default tab: Deliveries
+  const [activeDeliveries, setActiveDeliveries] = useState<Delivery[]>([]);
+  const [fleet, setFleet] = useState<Truck[]>([]);
+  const [selectedTab, setSelectedTab] = useState("deliveries"); // Default tab: Deliveries
 
   // Fetch mock data after mount
   useEffect(() => {
@@ -90,25 +101,25 @@ export default function DashboardPage() {
         {/* Tab Navigation */}
         <div className="flex space-x-4 mb-6">
           <button
-            onClick={() => setSelectedTab('deliveries')}
+            onClick={() => setSelectedTab("deliveries")}
             className={`px-4 py-2 rounded-lg ${
-              selectedTab === 'deliveries' ? 'bg-blue-600 text-white' : 'bg-white text-gray-700'
+              selectedTab === "deliveries" ? "bg-blue-600 text-white" : "bg-white text-gray-700"
             }`}
           >
             Deliveries
           </button>
           <button
-            onClick={() => setSelectedTab('routes')}
+            onClick={() => setSelectedTab("routes")}
             className={`px-4 py-2 rounded-lg ${
-              selectedTab === 'routes' ? 'bg-blue-600 text-white' : 'bg-white text-gray-700'
+              selectedTab === "routes" ? "bg-blue-600 text-white" : "bg-white text-gray-700"
             }`}
           >
             Routes
           </button>
           <button
-            onClick={() => setSelectedTab('analytics')}
+            onClick={() => setSelectedTab("analytics")}
             className={`px-4 py-2 rounded-lg ${
-              selectedTab === 'analytics' ? 'bg-blue-600 text-white' : 'bg-white text-gray-700'
+              selectedTab === "analytics" ? "bg-blue-600 text-white" : "bg-white text-gray-700"
             }`}
           >
             Analytics
@@ -116,7 +127,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Tab Content */}
-        {selectedTab === 'deliveries' && (
+        {selectedTab === "deliveries" && (
           <motion.section
             className="bg-white rounded-lg shadow-lg p-6"
             initial={{ y: -20, opacity: 0 }}
@@ -139,7 +150,7 @@ export default function DashboardPage() {
           </motion.section>
         )}
 
-        {selectedTab === 'routes' && (
+        {selectedTab === "routes" && (
           <motion.section
             className="bg-white rounded-lg shadow-lg p-6"
             initial={{ y: -20, opacity: 0 }}
@@ -147,7 +158,6 @@ export default function DashboardPage() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Scheduled Routes</h2>
-            {/* Example routes data */}
             <div className="space-y-4">
               <div className="bg-gray-50 p-4 rounded-lg shadow-sm">
                 <p className="text-lg">Route #1</p>
@@ -158,7 +168,7 @@ export default function DashboardPage() {
           </motion.section>
         )}
 
-        {selectedTab === 'analytics' && (
+        {selectedTab === "analytics" && (
           <motion.section
             className="bg-white rounded-lg shadow-lg p-6"
             initial={{ y: -20, opacity: 0 }}

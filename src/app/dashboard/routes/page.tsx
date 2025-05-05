@@ -4,10 +4,18 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+// Define the Route type
+type Route = {
+  id: number;
+  routeName: string;
+  truckAssigned: string;
+  scheduledTime: string;
+};
+
 export default function RoutesPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [routes, setRoutes] = useState<any[]>([]);
+  const [routes, setRoutes] = useState<Route[]>([]);
 
   // If session is loading or not available, redirect to login
   if (status === "loading") {

@@ -40,6 +40,13 @@ export default function AnalyticsPage() {
     <main className="p-8 max-w-5xl mx-auto">
       <h1 className="text-3xl font-bold mb-4">Analytics</h1>
 
+      {/* Use session to display the logged-in user's name */}
+      {session?.user?.name && (
+        <p className="text-lg text-gray-700 mb-6">
+          Welcome, <span className="font-semibold">{session.user.name}</span>!
+        </p>
+      )}
+
       {analyticsData ? (
         <div className="bg-white p-6 rounded-md shadow-sm">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4">Performance Overview</h2>

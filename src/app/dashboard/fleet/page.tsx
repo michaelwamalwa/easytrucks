@@ -1,11 +1,20 @@
-"use client"; // Mark this as a client-side component
+"use client";
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion"; // For animations
 
+// Define the type for each truck in the fleet
+type Truck = {
+  id: number;
+  name: string;
+  type: string;
+  capacity: string;
+  status: string;
+};
+
 export default function FleetPage() {
-  // State for dynamic fleet data
-  const [fleet, setFleet] = useState<any[]>([]);
+  // State for dynamic fleet data with a specific type
+  const [fleet, setFleet] = useState<Truck[]>([]);
 
   // Simulating fetching fleet data
   useEffect(() => {

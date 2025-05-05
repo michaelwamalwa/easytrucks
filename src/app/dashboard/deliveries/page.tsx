@@ -4,30 +4,37 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+type Delivery = {
+  id: number;
+  name: string;
+  status: string;
+  customer: string;
+};
+
 export default function DeliveriesPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [deliveries, setDeliveries] = useState<any[]>([]);
+  const [deliveries, setDeliveries] = useState<Delivery[]>([]);
 
-  // If session is loading or not available, redirect to login
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+
+    if (status === "authenticated") {
+      // Simulate fetching delivery data
+      setTimeout(() => {
+        setDeliveries([
+          { id: 1, name: "Delivery #001", status: "In Progress", customer: "John Doe" },
+          { id: 2, name: "Delivery #002", status: "Completed", customer: "Jane Smith" },
+        ]);
+      }, 1000);
+    }
+  }, [status, router]);
+
   if (status === "loading") {
     return <p>Loading...</p>;
   }
-
-  if (!session) {
-    router.push("/login");
-    return null;
-  }
-
-  // Fetch deliveries data (simulating dynamic content)
-  useEffect(() => {
-    setTimeout(() => {
-      setDeliveries([
-        { id: 1, name: "Delivery #001", status: "In Progress", customer: "John Doe" },
-        { id: 2, name: "Delivery #002", status: "Completed", customer: "Jane Smith" },
-      ]);
-    }, 1000);
-  }, []);
 
   return (
     <main className="p-8 max-w-5xl mx-auto">
