@@ -12,11 +12,7 @@ type Delivery = {
   status: string;
 };
 
-type Truck = {
-  id: number;
-  name: string;
-  type: string;
-};
+
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
