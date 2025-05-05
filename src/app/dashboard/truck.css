@@ -1,0 +1,17 @@
+/* Truck CSS Animation */
+
+.truck {
+    position: absolute;
+    left: -120px; /* Start off-screen */
+    animation: drive 10s linear infinite;
+  }
+  
+  @keyframes drive {
+    0% {
+      left: -120px; /* Start off-screen */
+    }
+    100% {
+      left: 100vw; /* End off-screen */
+    }
+  }
+  
