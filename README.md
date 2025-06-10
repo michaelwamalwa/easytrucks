@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚚 EasyTrucks
 
-## Getting Started
+A sleek and intuitive web platform designed to simplify **truck booking and dispatching** for drivers, fleet managers, and clients—ideal for logistics operations seeking efficiency.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🧭 Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+EasyTrucks allows users to:
+- Browse available trucks and drivers.
+- Book trucks for specific routes and schedules.
+- View booking status and past trips.
+- Communicate with drivers (messaging or notifications).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+For drivers and fleet managers:
+- Set truck availability and service regions.
+- Accept or decline booking requests.
+- Manage upcoming schedules.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project demonstrates real-world features essential to logistics platforms: authentication, role-based access, booking flows, and real-time communication.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ⚙️ Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Frontend         | Backend             | Database           | Dev & Deployment            |
+|------------------|---------------------|--------------------|-----------------------------|
+| React + Next.js  | Node.js + Express   | PostgreSQL / Supabase | TailwindCSS, Vercel, Postman |
+| Real-time chat   | JWT or Firebase Auth |                    | Git, GitHub Actions         |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🚀 Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Authentication**: Secure signup/login, roles (driver/fleet/consumer).
+- **Truck Listings**: View trucks, capacity, locations, availability.
+- **Booking System**: Select date/time, submit booking requests.
+- **Driver Dashboard**: Accept/reject requests, manage listings.
+- **Client Dashboard**: View booking history and statuses.
+- **Messaging**: Real-time chat between users and drivers.
+- **Responsive Design**: Mobile-first implementation.
+- **API**: Structured REST endpoints for frontend consumption.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
